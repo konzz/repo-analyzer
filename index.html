@@ -2,13 +2,104 @@
   <head>
     <title>Uwazi Issues Analysis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    {{data}}
+    <script src="charts.js"></script>
   </head>
   <body>
-    <h1>Uwazi Issues Analysis</h1>
+    <h1>Uwazi Issues Analysis since {{date}}</h1>
     <div class="analysis">
-      <h2>Issues Closed last year</h2>
-      <h3 id="issues_closed">140</h3>
+      <h2>Issues Closed</h2>
+      <h3>{{issues_closed}}</h3>
+    </div>
+    <div class="analysis">
+      <h2>Average time to close an issue</h2>
+      <h3>{{avg_time_to_close_issue}} days</h3>
+    </div>
+    <div class="analysis">
+      <div class="row">
+        <h2>Minimum time to close an issue</h2>
+        <h2>Maximum time to close an issue</h2>
+      </div>
+      <div class="row">
+        <h3>{{min_time_to_close_issue}} days</h3>
+        <h3>{{max_time_to_close_issue}} days</h3>
+      </div>
+    </div>
+    <div class="analysis">
+      <h2>Average time to close a PR</h2>
+      <h3>{{avg_time_to_close_pr}} days</h3>
+    </div>
+    <div class="analysis">
+      <div class="row">
+        <h2>Minimum time to close a PR</h2>
+        <h2>Maximum time to close a PR</h2>
+      </div>
+      <div class="row">
+        <h3>{{min_time_to_close_pr}} days</h3>
+        <h3>{{max_time_to_close_pr}} days</h3>
+      </div>
+    </div>
+    <div class="analysis">
+      <h2>How are this numbers calculated?</h2>
+      <ul>
+        <li>
+          An issue is considered started when label
+          <span class="badge sprint">Sprint</span> is added to it.
+        </li>
+        <li>
+          An issue is considered closed when in the last
+          <span class="badge closed">Closed</span> event.
+        </li>
+        <li>
+          A pull request is considered started on the event
+          <span class="badge ready">Ready for review</span> or if does not have
+          this event, it's considered since
+          <span class="badge ready">Open</span>.
+        </li>
+        <li>
+          Days are natural days and have weekends and any other holiday
+          included.
+        </li>
+      </ul>
+    </div>
+
+    <div class="analysis">
+      <h2>Days to close distribution</h2>
+      <canvas id="time_to_close_issue_chart"></canvas>
+      <div id="time_to_close_actions" class="actions"></div>
+    </div>
+    <div class="analysis">
+      <h2>Points done</h2>
+      <h3>{{points_done}}</h3>
+    </div>
+    <div class="analysis">
+      <div class="row">
+        <h2>Total days acumulated</h2>
+        <h2>Days per point</h2>
+      </div>
+      <div class="row">
+        <h3>{{total_days}} days</h3>
+        <h3>{{average_time_per_point}} days</h3>
+      </div>
+    </div>
+    <div class="analysis">
+      <h2>Issues by points distribution</h2>
+      <canvas id="points_distribution"></canvas>
+    </div>
+    <div class="analysis">
+      <h2>Average time to close by points</h2>
+      <canvas id="avg_time_to_close_by_points"></canvas>
+    </div>
+    <div class="analysis">
+      <h2>Days to close issues by points</h2>
+      <canvas id="time_to_close_by_points_distribution"></canvas>
+    </div>
+
+    <div class="analysis">
+      <h2>Label distribution</h2>
+      <div class="pie"><canvas id="labels_chart"></canvas></div>
     </div>
   </body>
 </html>

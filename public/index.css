@@ -1,0 +1,103 @@
+body {
+  padding: 20px 10%;
+  font-family: sans-serif;
+  text-align: center;
+  background-color: rgb(252, 252, 252);
+  color: rgb(68, 68, 68);
+}
+
+h1 {
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 4em;
+}
+
+li {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.analysis {
+  margin-bottom: 50px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px;
+}
+
+canvas {
+  padding-bottom: 30px;
+}
+
+.row {
+  display: flex;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.row > h2 {
+  font-size: 1.5em;
+}
+
+.row > h3 {
+  font-size: 3em;
+}
+
+.actions {
+  text-align: left;
+}
+.actions > button {
+  transition: background 0.25s, border-color 0.25s;
+  background: rgba(40, 44, 52, 0.05);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #3080d0;
+  text-decoration: none !important;
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  margin: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.badge {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sprint {
+  background: #41423f;
+  border-color: #787663;
+  color: #faedbb;
+}
+
+.closed {
+  background: red;
+  border-color: red;
+  color: white;
+}
+
+.ready {
+  background: rgb(35, 134, 54);
+  border-color: rgb(35, 134, 54);
+  color: white;
+}
+
+.actions > button:hover {
+  background: rgba(48, 128, 208, 0.15);
+  border-color: rgba(48, 128, 208, 0.2);
+  color: #3080d0;
+}
+
+.pie {
+  padding: 0 200px;
+}
