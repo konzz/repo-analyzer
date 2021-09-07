@@ -1,3 +1,5 @@
+import { filterOutliers, getAverge } from "./mathHelpers";
+
 export const analyzeTimeToClose = (issues) => {
   const data = {
     avg_time_to_close_issue: 0,
@@ -20,22 +22,20 @@ export const analyzeTimeToClose = (issues) => {
     }
   });
 
-  data.avg_time_to_close_issue = parseFloat(
-    (
-      data.all_issue_duration.reduce((a, b) => a + b, 0) /
-      data.all_issue_duration.length
-    ).toFixed(2)
+  data.filtered_all_issue_duration = filterOutliers(data.all_issue_duration);
+  data.filtered_all_pr_duration = filterOutliers(data.all_pr_duration);
+
+  data.avg_time_to_close_issue = getAverge(
+    data.filtered_all_issue_duration
+  ).toFixed(2);
+  data.min_time_to_close_issue = Math.min(...data.filtered_all_issue_duration);
+  data.max_time_to_close_issue = Math.max(...data.filtered_all_issue_duration);
+
+  data.avg_time_to_close_pr = getAverge(data.filtered_all_pr_duration).toFixed(
+    2
   );
-  data.min_time_to_close_issue = Math.min(...data.all_issue_duration);
-  data.max_time_to_close_issue = Math.max(...data.all_issue_duration);
-  data.avg_time_to_close_pr = parseFloat(
-    (
-      data.all_pr_duration.reduce((a, b) => a + b, 0) /
-      data.all_pr_duration.length
-    ).toFixed(2)
-  );
-  data.min_time_to_close_pr = Math.min(...data.all_pr_duration);
-  data.max_time_to_close_pr = Math.max(...data.all_pr_duration);
+  data.min_time_to_close_pr = Math.min(...data.filtered_all_pr_duration);
+  data.max_time_to_close_pr = Math.max(...data.filtered_all_pr_duration);
 
   return data;
 };

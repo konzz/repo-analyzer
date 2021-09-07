@@ -45,6 +45,10 @@
       <h2>How are this numbers calculated?</h2>
       <ul>
         <li>
+          Only issues with tag <span class="badge sprint">Sprint</span> were
+          processed.
+        </li>
+        <li>
           An issue is considered started when label
           <span class="badge sprint">Sprint</span> is added to it.
         </li>
@@ -61,6 +65,15 @@
         <li>
           Days are natural days and have weekends and any other holiday
           included.
+        </li>
+        <li>
+          Used some <span class="wizzard">🧙‍♂️</span>Dark Magic (math) to remove
+          <a
+            href="https://en.wikipedia.org/wiki/Outlier"
+            title="Wikipedia - Outlier"
+            >outliers</a
+          >
+          from the data when calculating averages.
         </li>
       </ul>
     </div>
@@ -83,6 +96,10 @@
         <h3>{{total_days}} days</h3>
         <h3>{{average_time_per_point}} days</h3>
       </div>
+    </div>
+    <div class="analysis">
+      <h2>Points per sprint</h2>
+      <canvas id="points_per_sprint"></canvas>
     </div>
     <div class="analysis">
       <h2>Issues by points distribution</h2>

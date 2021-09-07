@@ -25,6 +25,7 @@ const countGroupedIssues = (groupedIssues) => {
 export const average_time_to_close_by_points = (issues) => {
   const groupedIssues = groupIssuesByPoints(issues);
   const average_time_to_close_by_points = {};
+
   Object.keys(groupedIssues).forEach((points) => {
     const issues_with_points = groupedIssues[points];
 

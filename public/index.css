@@ -74,6 +74,11 @@ canvas {
   font-weight: 600;
 }
 
+.wizzard {
+  font-size: 2em;
+  line-height: 1px;
+}
+
 .sprint {
   background: #41423f;
   border-color: #787663;

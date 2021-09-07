@@ -248,4 +248,24 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
   });
+
+  new Chart(document.getElementById("points_per_sprint"), {
+    type: "line",
+    options: {
+      ...options(),
+    },
+    data: {
+      labels: data.sprints.map((sprint) => {
+        console.log(new Date(sprint.start));
+        return new Date(sprint.start).toLocaleDateString();
+      }),
+      datasets: [
+        {
+          data: data.sprints.map((sprint) => sprint.points),
+          borderColor: "rgb(75, 192, 192)",
+          backgroundColor: "rgba(75, 192, 192, 0.3)",
+        },
+      ],
+    },
+  });
 });
