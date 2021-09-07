@@ -2,6 +2,9 @@
   "name": "repo-analyze",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "@octokit/core": "^3.5.1",
     "@octokit/types": "^6.27.0",
