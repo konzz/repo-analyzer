@@ -3,7 +3,7 @@ import fs from "fs";
 import { Analyzer } from "./Analyzer";
 
 const app = express();
-const port = 2001; // a space odyssey
+const port = process.env.PORT || 2001; // a space odyssey
 
 app.use(express.static("public"));
 
