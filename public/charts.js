@@ -256,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     data: {
       labels: data.sprints.map((sprint) => {
-        console.log(new Date(sprint.start));
         return new Date(sprint.start).toLocaleDateString();
       }),
       datasets: [

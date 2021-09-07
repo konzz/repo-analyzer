@@ -44,8 +44,6 @@ export const groupIssuesBySprint = (issues, startDate) => {
       return acc + parseInt(issue.points, 10);
     }, 0);
 
-    console.log(sprint.points);
-
     return sprint;
   });
 };
