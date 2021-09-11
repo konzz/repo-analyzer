@@ -109,8 +109,8 @@ const getAllIssues = async (initialDate) => {
   );
 };
 
-export const getData = async (initialDate) => {
-  const rawData = fs.readFileSync("./data", "utf-8");
+export const getData = async (initialDate, fileName = "data") => {
+  const rawData = fs.readFileSync(`./${fileName}`, "utf-8");
   if (rawData) {
     return JSON.parse(rawData);
   }
@@ -118,6 +118,6 @@ export const getData = async (initialDate) => {
   const data = unfilteredData.filter(
     (issue) => issue.days_to_close > 0 && issue.days_to_close_pr > 0
   );
-  fs.writeFileSync("./data", JSON.stringify(data));
+  fs.writeFileSync(`./${fileName}`, JSON.stringify(data));
   return data;
 };
