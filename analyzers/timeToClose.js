@@ -1,4 +1,9 @@
-import { filterOutliers, getAverge } from "./mathHelpers";
+import {
+  filterOutliers,
+  getAverge,
+  getStandardDeviation,
+  getMean,
+} from "./mathHelpers";
 
 export const analyzeTimeToClose = (issues) => {
   const data = {
@@ -10,6 +15,8 @@ export const analyzeTimeToClose = (issues) => {
     max_time_to_close_pr: 0,
     all_issue_duration: [],
     all_pr_duration: [],
+    mean: 0,
+    standard_deviation: 0,
   };
 
   issues.forEach((issue) => {
@@ -25,14 +32,20 @@ export const analyzeTimeToClose = (issues) => {
   data.filtered_all_issue_duration = filterOutliers(data.all_issue_duration);
   data.filtered_all_pr_duration = filterOutliers(data.all_pr_duration);
 
-  data.avg_time_to_close_issue = getAverge(
-    data.filtered_all_issue_duration
-  ).toFixed(2);
+  data.avg_time_to_close_issue = parseFloat(
+    getAverge(data.filtered_all_issue_duration).toFixed(2)
+  );
+
+  data.mean = parseFloat(getMean(data.filtered_all_issue_duration).toFixed(2));
+  data.standard_deviation = parseFloat(
+    getStandardDeviation(data.filtered_all_issue_duration).toFixed(2)
+  );
+
   data.min_time_to_close_issue = Math.min(...data.filtered_all_issue_duration);
   data.max_time_to_close_issue = Math.max(...data.filtered_all_issue_duration);
 
-  data.avg_time_to_close_pr = getAverge(data.filtered_all_pr_duration).toFixed(
-    2
+  data.avg_time_to_close_pr = parseFloat(
+    getAverge(data.filtered_all_pr_duration).toFixed(2)
   );
   data.min_time_to_close_pr = Math.min(...data.filtered_all_pr_duration);
   data.max_time_to_close_pr = Math.max(...data.filtered_all_pr_duration);

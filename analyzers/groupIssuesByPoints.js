@@ -35,6 +35,7 @@ export const average_time_to_close_by_points = (issues) => {
 
   return {
     average_time_to_close_by_points,
+
     count_by_points: countGroupedIssues(groupedIssues),
   };
 };

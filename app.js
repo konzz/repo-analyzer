@@ -6,7 +6,13 @@ const app = express();
 const port = process.env.PORT || 2001; // a space odyssey
 
 app.use(express.static("public"));
-
+app.use("/chartjs", express.static(__dirname + "/node_modules/chart.js/dist/"));
+app.use(
+  "/chartjs-chart-box-and-violin-plot",
+  express.static(
+    __dirname + "/node_modules/chartjs-chart-box-and-violin-plot/build/"
+  )
+);
 const analyzer = new Analyzer();
 
 app.get("/", async (req, res) => {
