@@ -6,7 +6,7 @@ export const createSprints = (startDate) => {
   let end = new Date(startDate);
   end.setDate(end.getDate() + 14);
 
-  while (end <= today) {
+  while (start <= today) {
     sprints.push({
       start: start.getTime(),
       end: end.getTime(),
