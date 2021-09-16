@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/core";
 import fs from "fs";
+import { apikey } from "./apikey";
 
 const getSprintIssuesPerPage = async (page, octokit, initialDate) => {
   const issues = await octokit.request("GET /repos/{owner}/{repo}/issues", {
@@ -94,7 +95,7 @@ const processIssue = async (issue, octokit) => {
 
 const getAllIssues = async (initialDate) => {
   const octokit = new Octokit({
-    auth: "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",
+    auth: apikey,
   });
   const allIssues = [];
   let page = 1;
