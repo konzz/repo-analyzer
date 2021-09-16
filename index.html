@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="index.css" />
     {{data}}
     <script src="charts.js"></script>
+    <script src="charts/utils.js"></script>
+    <script src="charts/labels.js"></script>
+    <script src="charts/timeToCloseDistributedBar.js"></script>
+    <script src="charts/issuesByPointsDistribution.js"></script>
+    <script src="charts/pointsPerSprint.js"></script>
+    <script src="charts/timeToCloseByPointsScatter.js"></script>
   </head>
   <body>
     <h1>Uwazi Issues Analysis since {{date}}</h1>
@@ -81,8 +87,8 @@
 
     <div class="analysis">
       <h2>Days to close distribution</h2>
-      <canvas id="time_to_close_issue_chart"></canvas>
-      <div id="time_to_close_actions" class="actions"></div>
+      <canvas id="time-to-close-issue-chart"></canvas>
+      <div id="time-to-close-actions" class="actions"></div>
     </div>
     <div class="analysis">
       <h2>Points done</h2>
@@ -100,28 +106,24 @@
     </div>
     <div class="analysis">
       <h2>Points per sprint</h2>
-      <canvas id="points_per_sprint"></canvas>
+      <canvas id="points-per-sprint"></canvas>
     </div>
     <div class="analysis">
       <h2>Issues by points distribution</h2>
-      <canvas id="points_distribution"></canvas>
+      <canvas id="issues-by-points-distribution"></canvas>
     </div>
     <div class="analysis">
       <h2>Average time to close by points</h2>
-      <canvas id="avg_time_to_close_by_points"></canvas>
+      <canvas id="avg-time-to-close-by-points"></canvas>
     </div>
     <div class="analysis">
       <h2>Days to close issues by points</h2>
-      <canvas id="time_to_close_by_points_distribution"></canvas>
-      <div
-        id="time_to_close_by_points_distribution_actions"
-        class="actions"
-      ></div>
+      <canvas id="time-to-close-by-points-scatter"></canvas>
     </div>
 
     <div class="analysis">
       <h2>Label distribution</h2>
-      <div class="pie"><canvas id="labels_chart"></canvas></div>
+      <div class="pie"><canvas id="labels-chart"></canvas></div>
     </div>
   </body>
 </html>
