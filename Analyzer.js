@@ -2,9 +2,8 @@ import { getData } from "./dataExractor";
 import { analyzeTimeToClose } from "./analyzers/timeToClose";
 import { countLabels } from "./analyzers/countLabels";
 import { timeToCloseGrouped } from "./analyzers/timeToCloseGrouped";
-import { average_time_to_close_by_points } from "./analyzers/groupIssuesByPoints";
+import { averageTimeToCloseByPoints } from "./analyzers/groupIssuesByPoints";
 import { groupIssuesBySprint } from "./analyzers/sprints";
-import { getAverge } from "./analyzers/mathHelpers";
 
 export class Analyzer {
   owner = "huridocs";
@@ -17,25 +16,25 @@ export class Analyzer {
 
     const timeToClose = analyzeTimeToClose(issues);
 
-    const points_done = issues.reduce(
+    const pointsDone = issues.reduce(
       (total, issue) => total + parseFloat(issue.points || 0),
       0
     );
-    const total_days = timeToClose.filtered_all_issue_duration
+    const totalDays = timeToClose.filteredAllIssueDuration
       .reduce((total, days) => total + days, 0)
       .toFixed(2);
 
     const data = {
       date: new Date(this.initialDate).toLocaleDateString(),
-      issues_closed: issues.length,
-      points_done,
-      total_days,
-      average_time_per_point: (total_days / points_done).toFixed(2),
+      issuesClosed: issues.length,
+      pointsDone,
+      totalDays,
+      averageTimePerPoint: (totalDays / pointsDone).toFixed(2),
       labels: countLabels(issues),
       ...timeToClose,
-      issues_time_closed_grouped: timeToCloseGrouped(issues),
-      pr_time_closed_grouped: timeToCloseGrouped(issues, "pr_started"),
-      issues_by_points: average_time_to_close_by_points(issues),
+      issuesGroupedByDaysToClose: timeToCloseGrouped(issues),
+      prGroupedByDaysToClose: timeToCloseGrouped(issues, "pr_started"),
+      issuesByPoints: averageTimeToCloseByPoints(issues),
       sprints,
     };
 

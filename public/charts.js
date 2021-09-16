@@ -97,10 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
         ...options((label, parsed) => `${parsed.y} closed in ${label} days `),
       },
       data: {
-        labels: Object.keys(data.issues_time_closed_grouped),
+        labels: Object.keys(data.issuesGroupedByDaysToClose),
         datasets: [
           {
-            data: Object.values(data.issues_time_closed_grouped),
+            data: Object.values(data.issuesGroupedByDaysToClose),
             ...colors,
           },
         ],
@@ -113,10 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Issues",
       handler(chart) {
         chart.data = {
-          labels: Object.keys(data.issues_time_closed_grouped),
+          labels: Object.keys(data.issuesGroupedByDaysToClose),
           datasets: [
             {
-              data: Object.values(data.issues_time_closed_grouped),
+              data: Object.values(data.issuesGroupedByDaysToClose),
               ...colors,
             },
           ],
@@ -129,10 +129,10 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Pull Request",
       handler(chart) {
         chart.data = {
-          labels: Object.keys(data.pr_time_closed_grouped),
+          labels: Object.keys(data.prGroupedByDaysToClose),
           datasets: [
             {
-              data: Object.values(data.pr_time_closed_grouped),
+              data: Object.values(data.prGroupedByDaysToClose),
               ...colors,
             },
           ],
@@ -149,24 +149,24 @@ document.addEventListener("DOMContentLoaded", () => {
       ...options(),
     },
     data: {
-      labels: Object.keys(data.issues_by_points.count_by_points).map(
+      labels: Object.keys(data.issuesByPoints.countByPoints).map(
         (k) => k.toString() + " points"
       ),
       label: "culo",
       datasets: [
         {
-          data: Object.values(data.issues_by_points.count_by_points),
-          backgroundColor: Object.keys(
-            data.issues_by_points.count_by_points
-          ).map((k) => {
-            cardValues = ["1", "2", "3", "5", "8", "13", "20", "40", "100"];
-            if (cardValues.includes(k)) {
-              return "rgba(75, 192, 192, 0.3)";
-            }
+          data: Object.values(data.issuesByPoints.countByPoints),
+          backgroundColor: Object.keys(data.issuesByPoints.countByPoints).map(
+            (k) => {
+              cardValues = ["1", "2", "3", "5", "8", "13", "20", "40", "100"];
+              if (cardValues.includes(k)) {
+                return "rgba(75, 192, 192, 0.3)";
+              }
 
-            return "rgba(201, 203, 207, 0.3)";
-          }),
-          borderColor: Object.keys(data.issues_by_points.count_by_points).map(
+              return "rgba(201, 203, 207, 0.3)";
+            }
+          ),
+          borderColor: Object.keys(data.issuesByPoints.countByPoints).map(
             (k) => {
               cardValues = ["1", "2", "3", "5", "8", "13", "20", "40", "100"];
               if (cardValues.includes(k)) {
@@ -183,14 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const scatterData = Object.keys(
-    data.issues_by_points.average_time_to_close_by_points
+    data.issuesByPoints.averageTimeToCloseByPoints
   ).map((k, index) => {
     colorIndex = index % colors.backgroundColor.length;
     return {
       label: k,
-      data: data.issues_by_points.average_time_to_close_by_points[
+      data: data.issuesByPoints.averageTimeToCloseByPoints[
         k
-      ].all_issue_duration.map((d) => ({ x: parseInt(k), y: d })),
+      ].allIssuesDuration.map((d) => ({ x: parseInt(k), y: d })),
       backgroundColor: colors.backgroundColor[colorIndex],
       borderColor: colors.borderColor[colorIndex],
       borderWidth: 1,
@@ -219,29 +219,29 @@ document.addEventListener("DOMContentLoaded", () => {
   new Chart(document.getElementById("avg_time_to_close_by_points"), {
     type: "line",
     data: {
-      labels: Object.keys(
-        data.issues_by_points.average_time_to_close_by_points
-      ).map((k) => k.toString() + " points"),
+      labels: Object.keys(data.issuesByPoints.averageTimeToCloseByPoints).map(
+        (k) => k.toString() + " points"
+      ),
       datasets: [
         {
           label: "Issues",
-          data: Object.keys(
-            data.issues_by_points.average_time_to_close_by_points
-          ).map((k) => {
-            return data.issues_by_points.average_time_to_close_by_points[k]
-              .avg_time_to_close_issue;
-          }),
+          data: Object.keys(data.issuesByPoints.averageTimeToCloseByPoints).map(
+            (k) => {
+              return data.issuesByPoints.averageTimeToCloseByPoints[k]
+                .avgTimeToCloseIssue;
+            }
+          ),
           borderColor: "rgb(75, 192, 192)",
           backgroundColor: "rgba(75, 192, 192, 0.3)",
         },
         {
           label: "Pull Request",
-          data: Object.keys(
-            data.issues_by_points.average_time_to_close_by_points
-          ).map((k) => {
-            return data.issues_by_points.average_time_to_close_by_points[k]
-              .avg_time_to_close_pr;
-          }),
+          data: Object.keys(data.issuesByPoints.averageTimeToCloseByPoints).map(
+            (k) => {
+              return data.issuesByPoints.averageTimeToCloseByPoints[k]
+                .avgTimeToClosePr;
+            }
+          ),
           borderColor: "rgb(54, 162, 235)",
           backgroundColor: "rgba(54, 162, 235, 0.3)",
         },

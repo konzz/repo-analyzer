@@ -22,20 +22,19 @@ const countGroupedIssues = (groupedIssues) => {
   return count;
 };
 
-export const average_time_to_close_by_points = (issues) => {
+export const averageTimeToCloseByPoints = (issues) => {
   const groupedIssues = groupIssuesByPoints(issues);
-  const average_time_to_close_by_points = {};
+  const averageTimeToCloseByPoints = {};
 
   Object.keys(groupedIssues).forEach((points) => {
     const issues_with_points = groupedIssues[points];
 
-    average_time_to_close_by_points[points] =
-      analyzeTimeToClose(issues_with_points);
+    averageTimeToCloseByPoints[points] = analyzeTimeToClose(issues_with_points);
   });
 
   return {
-    average_time_to_close_by_points,
+    averageTimeToCloseByPoints,
 
-    count_by_points: countGroupedIssues(groupedIssues),
+    countByPoints: countGroupedIssues(groupedIssues),
   };
 };
